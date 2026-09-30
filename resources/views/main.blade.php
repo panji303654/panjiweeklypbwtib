@@ -14,13 +14,12 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: white;
-            color: #333;
+            background: white;
         }
 
         .navbar {
             background-color: #536f68;
-            padding: 18px 25px;
+            padding: 20px 25px;
             display: flex;
             align-items: center;
         }
@@ -47,11 +46,11 @@
             text-align: center;
             color: #536f68;
             font-size: 42px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .profile {
-            font-size: 19px;
+            font-size: 20px;
             line-height: 2.5;
         }
 
@@ -82,7 +81,7 @@
             <p>NIM : 13242520066</p>
             <p>Prodi : Teknologi Informasi</p>
 
-            <img src="{{ asset('img/0909-01.jpg') }}" class="foto" alt="Foto Profil">
+            <img src="{{ asset('img/foto.jpg') }}" class="foto" alt="Foto Profil">
         </div>
 
     </div>
