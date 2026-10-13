@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,28 +15,33 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: white;
+            background: white;
             color: #333;
         }
 
         .navbar {
-            background-color: #536f68;
+            background: #536f68;
             padding: 18px 25px;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo {
             color: white;
             font-size: 24px;
-            margin-right: 30px;
+            margin-right: 10px;
         }
 
         .navbar a {
             color: white;
             text-decoration: none;
             font-size: 18px;
-            margin-right: 25px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
         }
 
         .container {
@@ -46,18 +52,22 @@
         h1 {
             text-align: center;
             color: #536f68;
-            font-size: 42px;
-            margin-bottom: 20px;
+            font-size: 36px;
+            margin-bottom: 25px;
         }
 
         .profile {
             font-size: 19px;
-            line-height: 2.5;
+            line-height: 2;
         }
 
         .foto {
-            width: 180px;
-            margin-top: 10px;
+            display: block;
+            width: 250px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
@@ -66,15 +76,13 @@
 
     <div class="navbar">
         <div class="logo">WEB TI</div>
-
         <a href="/">Home</a>
-        <a href="#">Berita</a>
+        <a href="/berita">Berita</a>
         <a href="/profile">Profil</a>
         <a href="#">Contact</a>
     </div>
 
     <div class="container">
-
         <h1>HALAMAN PROFILE</h1>
 
         <div class="profile">
@@ -82,9 +90,12 @@
             <p>NIM : 13242520066</p>
             <p>Prodi : Teknologi Informasi</p>
 
-            <img src="{{ asset('img/0909-01.jpg') }}" class="foto" alt="Foto Profil">
+            <img
+                src="{{ asset('img/0909-01.jpg') }}"
+                class="foto"
+                alt="Foto Mesin Motor"
+            >
         </div>
-
     </div>
 
 </body>
