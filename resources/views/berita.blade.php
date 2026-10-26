@@ -101,10 +101,12 @@
 
     <main class="container">
 
-        @foreach ($data_berita as $berita)
+        @forelse ($data_berita as $berita)
             <article class="berita">
                 <h2>
-                    <a href="/berita">{{ $berita['judul'] }}</a>
+                    <a href="{{ url('/berita/' . $berita['slug']) }}">
+                        {{ $berita['judul'] }}
+                    </a>
                 </h2>
 
                 <p class="penulis">
@@ -113,12 +115,11 @@
 
                 <p class="konten">
                     {{ $berita['konten'] }}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Informasi dan perkembangan teknologi memberikan manfaat
-                    bagi mahasiswa dalam kegiatan belajar dan kehidupan sehari-hari.
                 </p>
             </article>
-        @endforeach
+        @empty
+            <p>Belum ada berita.</p>
+        @endforelse
 
     </main>
 
