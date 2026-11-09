@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      */
@@ -15,5 +17,14 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    public function test_all_public_pages_return_successful_responses(): void
+    {
+        foreach (['/', '/profile', '/contact', '/berita'] as $route) {
+            $response = $this->get($route);
+
+            $response->assertStatus(200);
+        }
     }
 }
