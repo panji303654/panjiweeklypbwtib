@@ -1,36 +1,65 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Berita;
 
-// Halaman Home
+// Data berita (sementara disimpan di sini)
+function dataBerita(): array
+{
+    $data = [
+        [
+            'slug'    => 'mahasiswa-ti',
+            'judul'   => 'Mahasiswa TI Juara Lomba Coding',
+            'penulis' => 'Panji Satria Pratama',
+            'konten'  => 'Isi berita tentang mahasiswa TI yang juara lomba coding.',
+        ],
+        [
+            'slug'    => 'seminar-laravel',
+            'judul'   => 'Seminar Laravel untuk Pemula',
+            'penulis' => 'Admin',
+            'konten'  => 'Isi berita tentang seminar Laravel untuk pemula.',
+        ],
+    ];
+
+    // Diubah jadi object + diberi tanggal supaya cocok dengan blade
+    return array_map(fn ($b) => (object) ($b + [
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]), $data);
+}
+
+// Home
 Route::get('/', function () {
-    return view('main');
-});
+    return view('home', ['title' => 'Home']);
+})->name('home');
 
-// Halaman Profile
-Route::get('/profile', function () {
-    return view('profile');
-});
-
-// Halaman Daftar Berita
+// Daftar berita
 Route::get('/berita', function () {
-    $data_berita = Berita::ambilberita();
+    return view('berita', [
+        'title'   => 'Berita',
+        'beritas' => dataBerita(),
+    ]);
+})->name('berita.index');
 
-    return view('berita', compact('data_berita'));
-});
-
-// Halaman Detail Berita
+// Detail berita
 Route::get('/berita/{slug}', function ($slug) {
-    $berita = Berita::getberita($slug);
+    $berita = collect(dataBerita())->firstWhere('slug', $slug);
 
-    if (empty($berita)) {
+    if (!$berita) {
         abort(404);
     }
 
-    return view('beritadetail', [
-        'title' => $berita['judul'],
+    return view('beritatunggal', [
+        'title'  => 'Detail Berita',
         'berita' => $berita,
     ]);
-});
+})->name('berita.show');
+
+// Profile
+Route::get('/profile', function () {
+    return view('profile', ['title' => 'Profile']);
+})->name('profile');
+
+// Contact
+Route::get('/contact', function () {
+    return view('contact', ['title' => 'Contact']);
+})->name('contact');
